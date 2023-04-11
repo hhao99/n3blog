@@ -1,24 +1,16 @@
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
+import 'md-editor-rt/lib/style.css'
 
-import dynamic from "next/dynamic";
-import { useState } from "react";
+import MdEditor from 'md-editor-rt'
+import { useState } from 'react'
 
-const MDEditor = dynamic(
-  () => import("@uiw/react-md-editor"),
-  { ssr: false }
-);
 export default function Editor() {
-    const initialContent = `
- ** simple markdown editor **
- `
-    const [content,setContent] = useState<string>(initialContent)
+    const [text,setText] = useState('')
+  
     return (
-        <div data-color-mode='light'>
-            <MDEditor value={content} 
-                onChange={setContent}
-                />
+        <div>
             
+            <MdEditor modelValue={text} onChange={setText} />
+ 
         </div>
     )
 }

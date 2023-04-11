@@ -1,12 +1,23 @@
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { serialize } from 'next-mdx-remote/serialize'
 
 const post_dir = path.resolve(process.cwd(),'_posts')
 
 function getPostDir() {
     return post_dir
+}
+
+function savePost(blog_text: string) {
+    const matters = matter(blog_text)
+    const slug = matters.data.title.replace(/\b/,'-')
+    try { 
+        const file = fs.writeFileSync(`{slug}.md`,'utf-8')
+    } catch(err)
+    {
+        console.log(err)
+    }
+
 }
 
 async function getAllPosts() {
@@ -39,5 +50,6 @@ async function getPostBySlug(slug: string) {
 export { 
     getPostDir,
     getAllPosts,
-    getPostBySlug
+    getPostBySlug,
+    savePost
 }

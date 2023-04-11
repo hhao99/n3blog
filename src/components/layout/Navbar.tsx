@@ -7,8 +7,9 @@ export default function Navbar() {
                     <Link href='/'>Home</Link>
                 </li>
                 <li>
-                    <Link href='/blog'>Blog Page</Link>
+                    <Link href='/edit'>create a new Blog</Link>
                 </li>
+                 
                 <li>
                     <Link href='/about'>About</Link>
                 </li>
