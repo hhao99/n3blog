@@ -10,11 +10,13 @@ function getPostDir() {
 
 function savePost(blog_text: string) {
     const matters = matter(blog_text)
-    const slug = matters.data.title.replace(/\b/,'-')
+    console.log(matters)
+    const slug = matters.data.title.trim()
     try { 
-        const file = fs.writeFileSync(`{slug}.md`,'utf-8')
+         const file = fs.writeFileSync(`${post_dir}/${slug}.md`,blog_text,'utf-8')
     } catch(err)
     {
+        console.log(`got err`)
         console.log(err)
     }
 
