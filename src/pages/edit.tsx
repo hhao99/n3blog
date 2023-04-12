@@ -1,6 +1,7 @@
 import 'md-editor-rt/lib/style.css'
 
 import MdEditor from 'md-editor-rt'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 const author = 'Eric Hao'
@@ -18,7 +19,7 @@ welcome
 export default function Editor() {
     const [text,setText] = useState(initial_md_content)
     const [msg,setMsg] = useState('')
-
+    const { data: session, status } = useSession()
     const handleSave = ()=> {
         const reqParams = {
             md: {
@@ -40,6 +41,13 @@ export default function Editor() {
             })
     }
   
+    if( status === 'unauthenticated') {
+        return (
+            <div>
+                <h1>Only authorized use can login to this page!</h1>
+            </div>
+        )
+    }
     return (
         <div>
             
